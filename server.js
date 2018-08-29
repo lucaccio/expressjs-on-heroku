@@ -5,7 +5,7 @@ const app = express();
 
 app.use(express.static('public'));
 
-app.get('/hello' , (req, res) => {
+app.post('/hello' , (req, res) => {
     console.log('GET for /hello');
     
    // res.write('sei su homes');
