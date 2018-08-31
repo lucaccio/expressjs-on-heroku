@@ -10,16 +10,21 @@ const mysql = require('mysql')
 const conn = mysql.createConnection({
     host : 'localhost',
     database : 'sandbox',
-    user : 'root',
-    password:''
+    user : 'sandbox',
+    password:'123456'
 });
 
-
+// utilizza la porta 5000 a meno che non esista una porta preconfigurata
 app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
 
 app.get('/testdb' , (req, res) => {
+
+    if(!conn) {
+         throw error;
+    }
+
     console.log('GET for /testdb');
     
     conn.connect(function(err){
@@ -30,22 +35,19 @@ app.get('/testdb' , (req, res) => {
         } else {
             conn.query('SELECT * FROM users', function (error, results, fields) {
                 if (error) throw error;
+                  //console.log(fields)
+                  console.log('All: ', results );
                   console.log('User: ', results[0].username);
+                  //conn.end();
+                  res.send(results[0].username);
+
               });
-              conn.end();
+             
         }
         
-    });
+    });    
+    
    
-    
-    
-    
-
-
-
-
-
- 
 })
 
 app.listen(app.get('port'), () => {

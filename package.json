@@ -1,9 +1,11 @@
 {
   "name": "expressjs-on-heroku",
   "version": "1.0.0",
-  "description": "",
+  "description": "API tester for mySQL",
   "main": "server.js",
+  "config" : { "port" : "8080" },
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
